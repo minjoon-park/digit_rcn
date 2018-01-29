@@ -14,33 +14,26 @@ TRAINING_PREFIX = 'train'
 TEST_PREFIX = 't10k'
 
 '''
-~485M
+Vanilla, single layer implementation
+Overshoot protection
 
-default
-    accuracy: 84.810000 after 1000 runs in 409.756796s
-
-learn rate: 2, reg:
-    1
-        89.1
-    0.9
-        accuracy: 89.260000 after 1000 runs in 399.315042s
-    0.85
-        accuracy: 89.160000 after 1000 runs in 400.967612s
-    0.8
-        accuracy: 89.940000 after 1000 runs in 403.872361s
-    0.75
-        accuracy: 89.470000 after 1000 runs in 401.305660s
-    0.7
-        accuracy: 89.940000 after 1000 runs in 403.872361s
-    0.6
-        accuracy: 90.100000 after 1000 runs in 405.122192s
-    0.55
-        accuracy: 89.790000 after 1000 runs in 403.176063s
-    0.5
-        89.3
-    0.1
-        86
+mem: ~485M
+performance:
+    default
+        accuracy: 84.810000 after 1000 runs in 409.756796s
+    learn rate: 2, reg:
+        1       89.1
+        0.9     accuracy: 89.260000 after 1000 runs in 399.315042s
+        0.85    accuracy: 89.160000 after 1000 runs in 400.967612s
+        0.8     accuracy: 89.940000 after 1000 runs in 403.872361s
+        0.75    accuracy: 89.470000 after 1000 runs in 401.305660s
+        0.7     accuracy: 89.940000 after 1000 runs in 403.872361s
+        0.6     accuracy: 90.100000 after 1000 runs in 405.122192s
+        0.55    accuracy: 89.790000 after 1000 runs in 403.176063s
+        0.5     89.3
+        0.1     86
 '''
+
 
 class DigitRecognition(object):
 
