@@ -1,8 +1,6 @@
 import random
 import time
 
-from math import exp
-from math import log
 import numpy as np
 import scipy.special as sp
 
@@ -22,9 +20,9 @@ performance:
     default
         accuracy: 65.330000 after 1000 runs in 185.902133s
     learn rate: 2, reg:
-    	1.5    accuracy: 63.560000 after 1000 runs in 187.068504s
-    	1.2    accuracy: 63.670000 after 1000 runs in 188.775752s
-    	1.1    accuracy: 65.350000 after 1000 runs in 188.080622s
+        1.5    accuracy: 63.560000 after 1000 runs in 187.068504s
+        1.2    accuracy: 63.670000 after 1000 runs in 188.775752s
+        1.1    accuracy: 65.350000 after 1000 runs in 188.080622s
         1      accuracy: 70.230000 after 1000 runs in 210.820340s
         0.9    accuracy: 65.640000 after 1000 runs in 188.318634s
         0.8    accuracy: 68.560000 after 1000 runs in 188.724834s
@@ -124,12 +122,12 @@ class DigitRecognition(object):
 
     def feed_forward(self, prefix, image_no):
         hidden = self.synapse_ih_f\
-        	.dot(getattr(self, prefix + '_images')[image_no])\
-        	.dot(self.synapse_ih_b) + self.synapse_ih_bias
+            .dot(getattr(self, prefix + '_images')[image_no])\
+            .dot(self.synapse_ih_b) + self.synapse_ih_bias
         hidden = sp.expit(hidden)
 
         output = self.synapse_ho_f.dot(hidden).dot(self.synapse_ho_b) + \
-        	self.synapse_ho_bias
+            self.synapse_ho_bias
         output = np.exp(output)
         output = output / output.sum()
 
@@ -155,18 +153,18 @@ class DigitRecognition(object):
             step_ho_b -= self.synapse_ho_f.dot(hidden).T.dot(tmp_ho)
 
             tmp_ih = self.synapse_ho_f.T.dot(tmp_ho)\
-            	.dot(self.synapse_ho_b.T) * hidden * (1. - hidden)
+                .dot(self.synapse_ho_b.T) * hidden * (1. - hidden)
             step_ih_bias -= tmp_ih
             step_ih_f -= tmp_ih\
-            	.dot(self.train_images[image_no].dot(self.synapse_ih_b).T)
+                .dot(self.train_images[image_no].dot(self.synapse_ih_b).T)
             step_ih_b -= self.synapse_ih_f.dot(self.train_images[image_no]).T\
-            	.dot(tmp_ih)
+                .dot(tmp_ih)
 
         self.loss += self.regularization_strength / 2 * (
             np.sum(np.square(self.synapse_ih_f)) +
-            	np.sum(np.square(self.synapse_ih_b)) +
-                np.sum(np.square(self.synapse_ho_f)) +
-                np.sum(np.square(self.synapse_ho_b))
+            np.sum(np.square(self.synapse_ih_b)) +
+            np.sum(np.square(self.synapse_ho_f)) +
+            np.sum(np.square(self.synapse_ho_b))
         )
         self.loss /= self.batch_size
 
@@ -205,6 +203,6 @@ class DigitRecognition(object):
             if np.argmax(output) == np.argmax(self.t10k_labels[image_no]):
                 correct += 1
 
-        accuracy = 100. * correct / self.num_t10k;
+        accuracy = 100. * correct / self.num_t10k
         print('\taccuracy: %f' % accuracy)
         return accuracy

@@ -1,8 +1,6 @@
 import random
 import time
 
-from math import exp
-from math import log
 import numpy as np
 import scipy.special as sp
 
@@ -162,7 +160,7 @@ class DigitRecognition(object):
 
         self.loss += self.regularization_strength / 2 * (
             np.sum(np.square(self.synapse_ih)) +
-                np.sum(np.square(self.synapse_ho))
+            np.sum(np.square(self.synapse_ho))
         )
         self.loss /= self.batch_size
 
@@ -195,6 +193,6 @@ class DigitRecognition(object):
             if np.argmax(output) == np.argmax(self.t10k_labels[image_no]):
                 correct += 1
 
-        accuracy = 100. * correct / self.num_t10k;
+        accuracy = 100. * correct / self.num_t10k
         print('\taccuracy: %f' % accuracy)
         return accuracy
